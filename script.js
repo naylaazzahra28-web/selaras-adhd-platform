@@ -13,22 +13,45 @@ document.addEventListener("click", function (e) {
   }
 });
 
-// Fetching Data
-
-const gistUrl = "https://gist.githubusercontent.com/fanhdt/c79a84879456e2832d88bf3e1020895a/raw/0c38afd136e1176bdc6de54e06ee3a1bd5f6049d/course.json";
-
-async function getCourses() {
-  try {
-    const response = await fetch(gistUrl);
-    if (!response.ok) {
-      throw new Error("Gagal mengambil data");
-    }
-    const courses = await response.json();
-    displayCourses(courses);
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
+// Data materi edukasi ADHD pada orang dewasa
+const courses = [
+  {
+    image: "assets/materi-1.svg",
+    category: "Dasar-Dasar",
+    title: "Mengenal ADHD pada Orang Dewasa",
+    description: "Pelajari apa itu ADHD, gejala umum pada orang dewasa, dan mengapa banyak kasus baru terdiagnosis di usia dewasa.",
+    mentor: "Andini Putri, M.Psi., Psikolog",
+    price: "Gratis",
+    slug: "mengenal-adhd-dewasa",
+  },
+  {
+    image: "assets/materi-2.svg",
+    category: "Produktivitas",
+    title: "Strategi Manajemen Waktu & Fokus",
+    description: "Teknik praktis mengatur waktu, mengurangi prokrastinasi, dan menjaga fokus di tengah kesibukan sehari-hari.",
+    mentor: "Bimo Prakoso, M.Psi., Psikolog",
+    price: "Rp 49.000",
+    slug: "manajemen-waktu-fokus",
+  },
+  {
+    image: "assets/materi-3.svg",
+    category: "Relasi",
+    title: "ADHD dan Hubungan Sosial",
+    description: "Memahami dampak ADHD terhadap hubungan pertemanan, keluarga, dan pekerjaan, serta cara berkomunikasi yang lebih efektif.",
+    mentor: "Salsabila Rahma, M.Psi., Psikolog",
+    price: "Rp 49.000",
+    slug: "adhd-hubungan-sosial",
+  },
+  {
+    image: "assets/materi-4.svg",
+    category: "Regulasi Emosi",
+    title: "Mengelola Emosi & Impulsivitas",
+    description: "Belajar mengenali pemicu emosi, teknik regulasi diri, dan cara merespons impulsivitas dengan lebih tenang.",
+    mentor: "Raka Firmansyah, M.Psi., Psikolog",
+    price: "Rp 59.000",
+    slug: "emosi-impulsivitas",
+  },
+];
 
 function displayCourses(courses) {
   const courseList = document.querySelector("#course-list");
@@ -38,15 +61,15 @@ function displayCourses(courses) {
   courses.forEach((course) => {
     courseList.innerHTML += `
     <div class="menu-card">
-        <img src="${course.image}"></img>
+        <img src="${course.image}" alt="${course.title}">
         <div class="menu-card-content">
             <span>${course.category}</span>
             <h3>${course.title}</h3>
             <p>${course.description}</p>
-            <small>Mentor: ${course.mentor}</small>
+            <small>Narasumber: ${course.mentor}</small>
             <strong>${course.price}</strong>
             <a href="course.html?slug=${course.slug}">
-            Lihat Kelas
+            Lihat Materi
             </a>
         </div>
     </div>
@@ -54,4 +77,4 @@ function displayCourses(courses) {
   });
 }
 
-getCourses();
+displayCourses(courses);
